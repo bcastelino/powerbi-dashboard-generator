@@ -166,28 +166,52 @@ Each skill is a folder under `skills/` containing a `SKILL.md` contract, optiona
 
 The skills are plain folders containing a `SKILL.md` contract plus optional `references/`, `scripts/`, and `assets/`. Any agent runtime that can read Markdown skill manifests can use them. Below are step-by-step instructions for the most common targets.
 
-### Option A — Claude Code (one-liner via plugin marketplace) ⭐ recommended
+### Option A — One-liner installers ⭐ recommended
 
-This repository is published as a **Claude Code plugin marketplace**. Inside any Claude Code session, run:
+Pick the one that matches your shell. Each command clones the repo, links every skill into your agent's skills directory, and installs the Python dependencies.
+
+**macOS / Linux / WSL (`curl | bash`)**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/bcastelino/powerbi-dashboard-generator/main/install.sh | bash
+```
+
+Pass a custom target as the first argument (defaults to `~/.claude/skills`):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/bcastelino/powerbi-dashboard-generator/main/install.sh | bash -s -- ~/.windsurf/skills
+```
+
+**Windows (PowerShell)**
+
+```powershell
+irm https://raw.githubusercontent.com/bcastelino/powerbi-dashboard-generator/main/install.ps1 | iex
+```
+
+For symlinks to succeed on Windows, run PowerShell as **Administrator** or enable **Developer Mode** (Settings → Update & Security → For developers). The script falls back to a full copy if symlinks aren't available.
+
+**Cross-platform via `npx` (community CLI)**
+
+If you have Node.js installed, the [`skills`](https://github.com/microsoft/skills) CLI works against any GitHub repo whose `skills/` folder follows the SKILL.md convention:
+
+```bash
+npx skills add bcastelino/powerbi-dashboard-generator
+```
+
+It opens an interactive picker, lets you select which skills to install, detects your agent (Claude Code, Copilot, Windsurf, etc.), and symlinks them into the correct directory.
+
+### Option B — Claude Code plugin marketplace (native)
+
+If you're already inside a Claude Code session, this is the most idiomatic path — no shell required:
 
 ```text
 /plugin marketplace add bcastelino/powerbi-dashboard-generator
 /plugin install powerbi-dashboard-generator@powerbi-dashboard-generator
 ```
 
-That's it. Claude Code will:
+Claude Code will pull the marketplace manifest from `.claude-plugin/marketplace.json`, install all ten skills, and make them available in every future session.
 
-1. Pull the marketplace manifest from this repo.
-2. Install all ten skills under `skills/` automatically.
-3. Make them available to the agent in every future session.
-
-Then install the Python dependencies once (the skill scripts use `pandas`, `pyyaml`, `openpyxl`, `sqlalchemy`):
-
-```bash
-pip install pandas pyyaml openpyxl sqlalchemy
-```
-
-To update later:
+To update:
 
 ```text
 /plugin marketplace update powerbi-dashboard-generator
@@ -199,7 +223,13 @@ To uninstall:
 /plugin uninstall powerbi-dashboard-generator@powerbi-dashboard-generator
 ```
 
-### Option B — Claude Code / Claude Desktop (manual install)
+You'll still need to install the Python dependencies once:
+
+```bash
+pip install pandas pyyaml openpyxl sqlalchemy
+```
+
+### Option C — Claude Code / Claude Desktop (manual install)
 
 If you prefer not to use the marketplace, you can drop the skills directly into Claude's skills directory.
 
@@ -239,7 +269,7 @@ pip install -r $HOME\repos\powerbi-dashboard-generator\requirements.txt
 
 Restart Claude. Each skill will appear by the `name:` declared in its `SKILL.md` frontmatter.
 
-### Option B — Windsurf / Cascade
+### Option D — Windsurf / Cascade
 
 Windsurf loads skills from the workspace and from a global skills directory.
 
@@ -263,7 +293,7 @@ New-Item -ItemType Directory -Force -Path $HOME\.windsurf\skills | Out-Null
 Copy-Item -Recurse skills\* $HOME\.windsurf\skills\
 ```
 
-### Option D — Cursor (via `.cursor/rules/` or MCP)
+### Option E — Cursor (via `.cursor/rules/` or MCP)
 
 Cursor doesn't have a native "skills" concept yet, but `SKILL.md` files work well as `.cursor/rules` (auto-attached context).
 
@@ -280,7 +310,7 @@ Then either:
 - Open this project directly in Cursor and start prompting, or
 - Add the `scripts/` folders to your tool path so Cursor's agent can call them.
 
-### Option E — Any other agent runtime (GitHub Copilot Workspace, Continue.dev, custom)
+### Option F — Any other agent runtime (GitHub Copilot Workspace, Continue.dev, custom)
 
 The skills are **runtime-agnostic**. To integrate with any tool that supports tool/function calling:
 
@@ -427,6 +457,8 @@ powerbi-dashboard-generator/
 ├── README.md                  # this file
 ├── LICENSE                    # MIT License
 ├── requirements.txt           # Python dependencies
+├── install.sh                 # one-liner installer (macOS / Linux / WSL)
+├── install.ps1                # one-liner installer (Windows PowerShell)
 ├── .gitignore
 ├── .claude-plugin/            # Claude Code plugin marketplace manifest
 │   ├── marketplace.json       # makes this repo installable via /plugin marketplace add
