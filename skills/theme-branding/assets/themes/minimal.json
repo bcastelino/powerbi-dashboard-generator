@@ -1,0 +1,177 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/Report%20Theme%20JSON%20Schema/reportThemeSchema-2.140.json",
+  "name": "Minimal",
+  "dataColors": [
+    "#444444",
+    "#888888",
+    "#BBBBBB",
+    "#666666",
+    "#AAAAAA",
+    "#222222",
+    "#CCCCCC",
+    "#999999"
+  ],
+  "good": "#3C8E3C",
+  "neutral": "#888888",
+  "bad": "#A33A3A",
+  "maximum": "#222222",
+  "center": "#888888",
+  "minimum": "#EEEEEE",
+  "null": "#F8F8F8",
+  "background": "#FFFFFF",
+  "secondaryBackground": "#FAFAFA",
+  "foreground": "#111111",
+  "secondaryForeground": "#666666",
+  "tableAccent": "#444444",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Light",
+      "fontSize": 40,
+      "color": "#111111"
+    },
+    "title": {
+      "fontFace": "Segoe UI Light",
+      "fontSize": 18,
+      "color": "#111111"
+    },
+    "header": {
+      "fontFace": "Segoe UI",
+      "fontSize": 11,
+      "color": "#111111"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#444444"
+    },
+    "lightLabel": {
+      "fontFace": "Segoe UI Light",
+      "fontSize": 9,
+      "color": "#666666"
+    },
+    "largeLabel": {
+      "fontFace": "Segoe UI",
+      "fontSize": 12,
+      "color": "#444444"
+    },
+    "smallLabel": {
+      "fontFace": "Segoe UI",
+      "fontSize": 8,
+      "color": "#666666"
+    },
+    "semiboldLabel": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 10,
+      "color": "#222222"
+    },
+    "boldLabel": {
+      "fontFace": "Segoe UI Bold",
+      "fontSize": 10,
+      "color": "#222222"
+    },
+    "largeLightLabel": {
+      "fontFace": "Segoe UI Light",
+      "fontSize": 11,
+      "color": "#666666"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontColor": {
+              "solid": {
+                "color": "#111111"
+              }
+            },
+            "fontSize": 14,
+            "fontFamily": "Segoe UI Light"
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FAFAFA"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "cardVisual": {
+      "*": {
+        "labels": [
+          {
+            "fontSize": 32,
+            "color": {
+              "solid": {
+                "color": "#111111"
+              }
+            }
+          }
+        ],
+        "categoryLabels": [
+          {
+            "fontSize": 10,
+            "color": {
+              "solid": {
+                "color": "#888888"
+              }
+            }
+          }
+        ]
+      },
+      "Hero": {
+        "labels": [
+          {
+            "fontSize": 48
+          }
+        ],
+        "categoryLabels": [
+          {
+            "fontSize": 12
+          }
+        ]
+      }
+    }
+  }
+}

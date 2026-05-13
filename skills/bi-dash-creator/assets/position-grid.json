@@ -1,0 +1,14 @@
+{
+  "pageWidth": 1280,
+  "pageHeight": 720,
+  "displayOption": "FitToPage",
+  "visualSchemaVersion": "2.6.0",
+  "maxVisualsPerPage": 4,
+  "positions": [
+    { "x": 0,   "y": 0,   "z": 0, "height": 360, "width": 640, "tabOrder": 0 },
+    { "x": 640, "y": 0,   "z": 1, "height": 360, "width": 640, "tabOrder": 1000 },
+    { "x": 0,   "y": 360, "z": 2, "height": 360, "width": 640, "tabOrder": 2000 },
+    { "x": 640, "y": 360, "z": 3, "height": 360, "width": 640, "tabOrder": 3000 }
+  ],
+  "excludedVisualTypes": ["cardVisual", "slicer", "kpi"]
+}

@@ -1,0 +1,295 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+    "name": "{{VisualName}}",
+    "position": {
+        "x": 20,
+        "y": 20,
+        "z": 0,
+        "height": 500,
+        "width": 760,
+        "tabOrder": 0
+    },
+    "visual": {
+        "visualType": "scatterChart",
+        "query": {
+            "queryState": {
+                "Category": {
+                    "projections": [
+                        {
+                            "field": {
+                                "Column": {
+                                    "Expression": {
+                                        "SourceRef": {
+                                            "Entity": "{{CategoryTable}}"
+                                        }
+                                    },
+                                    "Property": "{{CategoryColumn}}"
+                                }
+                            },
+                            "queryRef": "{{CategoryTable}}.{{CategoryColumn}}",
+                            "nativeQueryRef": "{{CategoryColumn}}",
+                            "active": true
+                        }
+                    ]
+                },
+                "X": {
+                    "projections": [
+                        {
+                            "field": {
+                                "Measure": {
+                                    "Expression": {
+                                        "SourceRef": {
+                                            "Entity": "{{XMeasureTable}}"
+                                        }
+                                    },
+                                    "Property": "{{XMeasureName}}"
+                                }
+                            },
+                            "queryRef": "{{XMeasureTable}}.{{XMeasureName}}",
+                            "nativeQueryRef": "{{XMeasureName}}",
+                            "active": true
+                        }
+                    ]
+                },
+                "Y": {
+                    "projections": [
+                        {
+                            "field": {
+                                "Measure": {
+                                    "Expression": {
+                                        "SourceRef": {
+                                            "Entity": "{{YMeasureTable}}"
+                                        }
+                                    },
+                                    "Property": "{{YMeasureName}}"
+                                }
+                            },
+                            "queryRef": "{{YMeasureTable}}.{{YMeasureName}}",
+                            "nativeQueryRef": "{{YMeasureName}}"
+                        }
+                    ]
+                },
+                "Size": {
+                    "projections": [
+                        {
+                            "field": {
+                                "Measure": {
+                                    "Expression": {
+                                        "SourceRef": {
+                                            "Entity": "{{SizeMeasureTable}}"
+                                        }
+                                    },
+                                    "Property": "{{SizeMeasureName}}"
+                                }
+                            },
+                            "queryRef": "{{SizeMeasureTable}}.{{SizeMeasureName}}",
+                            "nativeQueryRef": "{{SizeMeasureName}}"
+                        }
+                    ]
+                }
+            }
+        },
+        "objects": {
+            "categoryLabels": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        },
+                        "fontSize": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "{{FontSize}}"
+                                }
+                            }
+                        },
+                        "fontFamily": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "'{{FontFamily}}'"
+                                }
+                            }
+                        },
+                        "enableBackground": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "false"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "colorByCategory": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "xAxis": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        },
+                        "titleText": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "'{{XAxisTitle}}'"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "yAxis": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        },
+                        "titleText": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "'{{YAxisTitle}}'"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "visualContainerObjects": {
+            "title": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        },
+                        "text": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "'{{Title}}'"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "background": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        },
+                        "transparency": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "0D"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "border": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "false"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "dropShadow": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "false"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "lockAspect": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "general": [
+                {
+                    "properties": {
+                        "keepLayerOrder": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "false"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "drillFilterOtherVisuals": true
+    },
+    "filterConfig": {
+        "filters": [
+            {
+                "name": "{{FilterGuid}}",
+                "field": {
+                    "Column": {
+                        "Expression": {
+                            "SourceRef": {
+                                "Entity": "{{CategoryTable}}"
+                            }
+                        },
+                        "Property": "{{CategoryColumn}}"
+                    }
+                },
+                "type": "Categorical"
+            }
+        ]
+    }
+}

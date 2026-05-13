@@ -1,0 +1,456 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+    "name": "{{VisualName}}",
+    "position": {
+        "x": 20,
+        "y": 20,
+        "z": 0,
+        "height": 300,
+        "width": 760,
+        "tabOrder": 0
+    },
+    "visual": {
+        "visualType": "pivotTable",
+        "query": {
+            "queryState": {
+                "Rows": {
+                    "projections": [
+                        {
+                            "field": {
+                                "Column": {
+                                    "Expression": {
+                                        "SourceRef": {
+                                            "Entity": "{{RowTable}}"
+                                        }
+                                    },
+                                    "Property": "{{RowColumn}}"
+                                }
+                            },
+                            "queryRef": "{{RowTable}}.{{RowColumn}}",
+                            "nativeQueryRef": "{{RowColumn}}",
+                            "active": true
+                        }
+                    ]
+                },
+                "Columns": {
+                    "projections": [
+                        {
+                            "field": {
+                                "Column": {
+                                    "Expression": {
+                                        "SourceRef": {
+                                            "Entity": "{{ColumnTable}}"
+                                        }
+                                    },
+                                    "Property": "{{ColumnField}}"
+                                }
+                            },
+                            "queryRef": "{{ColumnTable}}.{{ColumnField}}",
+                            "nativeQueryRef": "{{ColumnField}}",
+                            "active": true
+                        }
+                    ]
+                },
+                "Values": {
+                    "projections": [
+                        {
+                            "field": {
+                                "Measure": {
+                                    "Expression": {
+                                        "SourceRef": {
+                                            "Entity": "{{MeasureTable}}"
+                                        }
+                                    },
+                                    "Property": "{{MeasureName}}"
+                                }
+                            },
+                            "queryRef": "{{MeasureTable}}.{{MeasureName}}",
+                            "nativeQueryRef": "{{MeasureName}}"
+                        }
+                    ]
+                }
+            },
+            "sortDefinition": {
+                "sort": [
+                    {
+                        "field": {
+                            "Measure": {
+                                "Expression": {
+                                    "SourceRef": {
+                                        "Entity": "{{MeasureTable}}"
+                                    }
+                                },
+                                "Property": "{{MeasureName}}"
+                            }
+                        },
+                        "direction": "{{SortDirection}}"
+                    }
+                ]
+            }
+        },
+        "objects": {
+            "columnHeaders": [
+                {
+                    "properties": {
+                        "outline": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "'Frame'"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "rowHeaders": [
+                {
+                    "properties": {
+                        "outline": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "'LeftRight'"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "values": [
+                {
+                    "properties": {
+                        "outline": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "'None'"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "total": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "visualContainerObjects": {
+            "title": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        },
+                        "text": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "'{{Title}}'"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "background": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        },
+                        "transparency": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "0D"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "border": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "false"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "dropShadow": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "false"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "lockAspect": [
+                {
+                    "properties": {
+                        "show": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "true"
+                                }
+                            }
+                        }
+                    }
+                }
+            ],
+            "general": [
+                {
+                    "properties": {
+                        "keepLayerOrder": {
+                            "expr": {
+                                "Literal": {
+                                    "Value": "false"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "drillFilterOtherVisuals": true
+    },
+    "filterConfig": {
+        "filters": [
+            {
+                "name": "{{FilterGuidRow}}",
+                "field": {
+                    "Column": {
+                        "Expression": {
+                            "SourceRef": {
+                                "Entity": "{{RowTable}}"
+                            }
+                        },
+                        "Property": "{{RowColumn}}"
+                    }
+                },
+                "type": "Categorical"
+            },
+            {
+                "name": "{{FilterGuidColumn}}",
+                "field": {
+                    "Column": {
+                        "Expression": {
+                            "SourceRef": {
+                                "Entity": "{{ColumnTable}}"
+                            }
+                        },
+                        "Property": "{{ColumnField}}"
+                    }
+                },
+                "type": "TopN",
+                "filter": {
+                    "Version": 2,
+                    "From": [
+                        {
+                            "Name": "subquery",
+                            "Expression": {
+                                "Subquery": {
+                                    "Query": {
+                                        "Version": 2,
+                                        "From": [
+                                            {
+                                                "Name": "d1",
+                                                "Entity": "{{ColumnTable}}",
+                                                "Type": 0
+                                            },
+                                            {
+                                                "Name": "f",
+                                                "Entity": "{{MeasureTable}}",
+                                                "Type": 0
+                                            }
+                                        ],
+                                        "Select": [
+                                            {
+                                                "Column": {
+                                                    "Expression": {
+                                                        "SourceRef": {
+                                                            "Source": "d1"
+                                                        }
+                                                    },
+                                                    "Property": "{{ColumnField}}"
+                                                },
+                                                "Name": "field"
+                                            }
+                                        ],
+                                        "OrderBy": [
+                                            {
+                                                "Direction": "{{TopNDirection}}",
+                                                "Expression": {
+                                                    "Measure": {
+                                                        "Expression": {
+                                                            "SourceRef": {
+                                                                "Source": "f"
+                                                            }
+                                                        },
+                                                        "Property": "{{MeasureName}}"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "Top": "{{TopNValue}}"
+                                    }
+                                }
+                            },
+                            "Type": 2
+                        },
+                        {
+                            "Name": "d1",
+                            "Entity": "{{ColumnTable}}",
+                            "Type": 0
+                        }
+                    ],
+                    "Where": [
+                        {
+                            "Condition": {
+                                "In": {
+                                    "Expressions": [
+                                        {
+                                            "Column": {
+                                                "Expression": {
+                                                    "SourceRef": {
+                                                        "Source": "d1"
+                                                    }
+                                                },
+                                                "Property": "{{ColumnField}}"
+                                            }
+                                        }
+                                    ],
+                                    "Table": {
+                                        "SourceRef": {
+                                            "Source": "subquery"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "{{FilterGuidMeasure}}",
+                "field": {
+                    "Measure": {
+                        "Expression": {
+                            "SourceRef": {
+                                "Entity": "{{MeasureTable}}"
+                            }
+                        },
+                        "Property": "{{MeasureName}}"
+                    }
+                },
+                "type": "Advanced"
+            },
+            {
+                "name": "{{DateRangeFilterGuid}}",
+                "field": {
+                    "Column": {
+                        "Expression": {
+                            "SourceRef": {
+                                "Entity": "{{DateRangeEntity}}"
+                            }
+                        },
+                        "Property": "{{DateRangeProperty}}"
+                    }
+                },
+                "type": "Advanced",
+                "filter": {
+                    "Version": 2,
+                    "From": [
+                        {
+                            "Name": "{{DateRangeAlias}}",
+                            "Entity": "{{DateRangeEntity}}",
+                            "Type": 0
+                        }
+                    ],
+                    "Where": [
+                        {
+                            "Condition": {
+                                "And": {
+                                    "Left": {
+                                        "Comparison": {
+                                            "ComparisonKind": 2,
+                                            "Left": {
+                                                "Column": {
+                                                    "Expression": {
+                                                        "SourceRef": {
+                                                            "Source": "{{DateRangeAlias}}"
+                                                        }
+                                                    },
+                                                    "Property": "{{DateRangeProperty}}"
+                                                }
+                                            },
+                                            "Right": {
+                                                "DateSpan": {
+                                                    "Expression": {
+                                                        "Literal": {
+                                                            "Value": "{{DateStart}}"
+                                                        }
+                                                    },
+                                                    "TimeUnit": 5
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "Right": {
+                                        "Comparison": {
+                                            "ComparisonKind": 4,
+                                            "Left": {
+                                                "Column": {
+                                                    "Expression": {
+                                                        "SourceRef": {
+                                                            "Source": "{{DateRangeAlias}}"
+                                                        }
+                                                    },
+                                                    "Property": "{{DateRangeProperty}}"
+                                                }
+                                            },
+                                            "Right": {
+                                                "DateSpan": {
+                                                    "Expression": {
+                                                        "Literal": {
+                                                            "Value": "{{DateEnd}}"
+                                                        }
+                                                    },
+                                                    "TimeUnit": 5
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

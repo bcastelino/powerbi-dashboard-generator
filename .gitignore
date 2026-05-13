@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Power BI local artifacts
+.pbi/localSettings.json
+.pbi/cache.abf
+
+# Generated output (uncomment if you do not want these tracked)
+# generated-reports/
+# generated-dashboards/
+*.zip
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
