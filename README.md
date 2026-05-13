@@ -58,7 +58,7 @@ The project is intentionally structured for **learning**:
 ### 2. Install
 
 ```bash
-git clone https://github.com/<your-org>/powerbi-dashboard-generator.git
+git clone https://github.com/bcastelino/powerbi-dashboard-generator.git
 cd powerbi-dashboard-generator
 pip install -r requirements.txt
 ```
@@ -206,7 +206,7 @@ If you're already inside a Claude Code session, this is the most idiomatic path 
 
 ```text
 /plugin marketplace add bcastelino/powerbi-dashboard-generator
-/plugin install powerbi-dashboard-generator@powerbi-dashboard-generator
+/plugin install powerbi@powerbi-dashboard-generator
 ```
 
 Claude Code will pull the marketplace manifest from `.claude-plugin/marketplace.json`, install all ten skills, and make them available in every future session.
@@ -220,7 +220,7 @@ To update:
 To uninstall:
 
 ```text
-/plugin uninstall powerbi-dashboard-generator@powerbi-dashboard-generator
+/plugin uninstall powerbi@powerbi-dashboard-generator
 ```
 
 You'll still need to install the Python dependencies once:
