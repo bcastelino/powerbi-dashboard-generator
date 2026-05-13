@@ -7,8 +7,9 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![Power BI](https://img.shields.io/badge/Power%20BI-PBIP-F2C811.svg?logo=powerbi&logoColor=black)](https://learn.microsoft.com/power-bi/developer/projects/projects-overview)
 [![TMDL](https://img.shields.io/badge/format-TMDL%20%2B%20PBIR-2B6CB0.svg)](https://learn.microsoft.com/analysis-services/tmdl/tmdl-overview)
-[![Agent Skills](https://img.shields.io/badge/agent--skills-compatible-7C3AED.svg)](#)
-[![Status](https://img.shields.io/badge/status-active-success.svg)](#)
+[![Claude Code Plugin](https://img.shields.io/badge/claude--code-plugin-D97757.svg)](https://docs.claude.com/en/docs/claude-code/plugins)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-active-success.svg)](#-overview)
 
 [Overview](#overview) ·
 [Quick Start](#-quick-start) ·
@@ -423,10 +424,14 @@ Each `SKILL.md` is designed to be readable as a **standalone tutorial**.
 
 ```text
 powerbi-dashboard-generator/
-├── README.md                # this file
-├── requirements.txt         # Python dependencies
+├── README.md                  # this file
+├── LICENSE                    # MIT License
+├── requirements.txt           # Python dependencies
 ├── .gitignore
-└── skills/                  # all agent skills, one folder each
+├── .claude-plugin/            # Claude Code plugin marketplace manifest
+│   ├── marketplace.json       # makes this repo installable via /plugin marketplace add
+│   └── plugin.json            # plugin metadata (name, version, author, keywords)
+└── skills/                    # all agent skills, one folder each
     ├── nlq-dashboard-orchestrator/
     ├── data-source-connector/
     ├── query-to-pbip/
@@ -448,6 +453,7 @@ powerbi-dashboard-generator/
 - **PBIR** — Power BI Report JSON format for visuals and pages
 - **Microsoft Power BI report-theme schema** — for theming (`reportThemeSchema-2.140.json`)
 - **Markdown-based skill contracts** — every skill exposes its capabilities via `SKILL.md`
+- **Claude Code plugin format** — `.claude-plugin/marketplace.json` makes this repo installable as a one-liner
 
 ---
 
@@ -476,7 +482,7 @@ Open an issue or pull request describing the change before submitting large addi
 
 ## 📄 License
 
-This repository is provided for **educational purposes**. See your organization's licensing policy for internal use, or add a license file (e.g., MIT, Apache-2.0) before publishing externally.
+Released under the [MIT License](LICENSE) — free to use, modify, and redistribute for both personal and commercial purposes. Attribution is appreciated but not required.
 
 ---
 
