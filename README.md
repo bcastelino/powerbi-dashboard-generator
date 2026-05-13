@@ -161,19 +161,52 @@ Each skill is a folder under `skills/` containing a `SKILL.md` contract, optiona
 
 ---
 
-## � Installing the Skills
+## 💻 Installing the Skills
 
 The skills are plain folders containing a `SKILL.md` contract plus optional `references/`, `scripts/`, and `assets/`. Any agent runtime that can read Markdown skill manifests can use them. Below are step-by-step instructions for the most common targets.
 
-### Option A — Claude Code / Claude Desktop (Anthropic Skills)
+### Option A — Claude Code (one-liner via plugin marketplace) ⭐ recommended
 
-Claude looks for skills in a per-user skills directory.
+This repository is published as a **Claude Code plugin marketplace**. Inside any Claude Code session, run:
+
+```text
+/plugin marketplace add bcastelino/powerbi-dashboard-generator
+/plugin install powerbi-dashboard-generator@powerbi-dashboard-generator
+```
+
+That's it. Claude Code will:
+
+1. Pull the marketplace manifest from this repo.
+2. Install all ten skills under `skills/` automatically.
+3. Make them available to the agent in every future session.
+
+Then install the Python dependencies once (the skill scripts use `pandas`, `pyyaml`, `openpyxl`, `sqlalchemy`):
+
+```bash
+pip install pandas pyyaml openpyxl sqlalchemy
+```
+
+To update later:
+
+```text
+/plugin marketplace update powerbi-dashboard-generator
+```
+
+To uninstall:
+
+```text
+/plugin uninstall powerbi-dashboard-generator@powerbi-dashboard-generator
+```
+
+### Option B — Claude Code / Claude Desktop (manual install)
+
+If you prefer not to use the marketplace, you can drop the skills directly into Claude's skills directory.
 
 **macOS / Linux**
 
 ```bash
 # 1. Clone the repo somewhere stable
-git clone https://github.com/<your-org>/powerbi-dashboard-generator.git ~/repos/powerbi-dashboard-generator
+git clone https://github.com/bcastelino/powerbi-dashboard-generator.git ~/repos/powerbi-dashboard-generator
 
 # 2. Symlink every skill into Claude's skills directory
 mkdir -p ~/.claude/skills
@@ -189,7 +222,7 @@ pip install -r ~/repos/powerbi-dashboard-generator/requirements.txt
 
 ```powershell
 # 1. Clone the repo
-git clone https://github.com/<your-org>/powerbi-dashboard-generator.git $HOME\repos\powerbi-dashboard-generator
+git clone https://github.com/bcastelino/powerbi-dashboard-generator.git $HOME\repos\powerbi-dashboard-generator
 
 # 2. Symlink each skill into Claude's skills directory
 $src = "$HOME\repos\powerbi-dashboard-generator\skills"
@@ -229,7 +262,7 @@ New-Item -ItemType Directory -Force -Path $HOME\.windsurf\skills | Out-Null
 Copy-Item -Recurse skills\* $HOME\.windsurf\skills\
 ```
 
-### Option C — Cursor (via `.cursor/rules/` or MCP)
+### Option D — Cursor (via `.cursor/rules/` or MCP)
 
 Cursor doesn't have a native "skills" concept yet, but `SKILL.md` files work well as `.cursor/rules` (auto-attached context).
 
@@ -246,7 +279,7 @@ Then either:
 - Open this project directly in Cursor and start prompting, or
 - Add the `scripts/` folders to your tool path so Cursor's agent can call them.
 
-### Option D — Any other agent runtime (GitHub Copilot Workspace, Continue.dev, custom)
+### Option E — Any other agent runtime (GitHub Copilot Workspace, Continue.dev, custom)
 
 The skills are **runtime-agnostic**. To integrate with any tool that supports tool/function calling:
 

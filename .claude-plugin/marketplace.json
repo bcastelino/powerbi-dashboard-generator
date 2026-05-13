@@ -1,0 +1,40 @@
+{
+  "name": "powerbi-dashboard-generator",
+  "owner": {
+    "name": "Brian Castelino",
+    "url": "https://github.com/bcastelino"
+  },
+  "metadata": {
+    "description": "Agent Skills toolkit that turns natural-language requests into fully-formed, branded Power BI Desktop Projects (PBIP).",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "powerbi-dashboard-generator",
+      "source": ".",
+      "description": "Ten composable skills that take a plain-English request plus any data source (SQL, warehouse, Excel, CSV, OData, SharePoint) and emit a complete, openable Power BI Desktop Project — semantic model (TMDL), report visuals (PBIR), theme, and dashboard layout.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Brian Castelino",
+        "url": "https://github.com/bcastelino"
+      },
+      "homepage": "https://github.com/bcastelino/powerbi-dashboard-generator",
+      "repository": "https://github.com/bcastelino/powerbi-dashboard-generator",
+      "license": "MIT",
+      "keywords": [
+        "power-bi",
+        "powerbi",
+        "pbip",
+        "tmdl",
+        "pbir",
+        "dashboard",
+        "business-intelligence",
+        "dax",
+        "nlq",
+        "skills"
+      ],
+      "category": "data-analytics",
+      "strict": false
+    }
+  ]
+}
