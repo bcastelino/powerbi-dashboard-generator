@@ -70,47 +70,45 @@ Open the resulting `.pbip` file in Power BI Desktop - the semantic model loads, 
 
 ## 🏗 Architecture
 
-The system is a **staged pipeline** orchestrated by a top-level NLQ skill. Each arrow below represents a file-based handoff between skills.
+The system is a **staged pipeline** orchestrated by a top-level NLQ skill, with two human-in-the-loop confirmation gates and file-based handoffs between every skill.
 
-```text
-                          ┌──────────────────────────────┐
-   User NLQ ─────────────►│  nlq-dashboard-orchestrator  │
-                          └──────────────┬───────────────┘
-                                         │ invokes
-                                         ▼
-                          ┌──────────────────────────────┐
-                          │    data-source-connector     │──► data-model.json
-                          └──────────────┬───────────────┘
-                                         │
-                          ┌──────────────▼───────────────┐
-                          │   GATE A - data model OK?    │
-                          └──────────────┬───────────────┘
-                                         │
-                          ┌──────────────▼───────────────┐
-                          │  NLQ Q&A (visuals, filters)  │
-                          └──────────────┬───────────────┘
-                                         │
-                          ┌──────────────▼───────────────┐
-                          │  GATE B - ready to scaffold? │
-                          └──────────────┬───────────────┘
-                                         │
-                          ┌──────────────▼───────────────┐
-                          │        query-to-pbip         │
-                          │  ┌────────────────────────┐  │
-                          │  │ 1. semantic-mapper     │──┼─► TMDL
-                          │  │ 2. visual-selector     │  │
-                          │  │ 3. visual-generator    │──┼─► visual.json (PBIR)
-                          │  │ 4. project-packager    │──┼─► .pbip
-                          │  └────────────────────────┘  │
-                          └──────────────┬───────────────┘
-                                         │
-                          ┌──────────────▼───────────────┐
-                          │       theme-branding         │──► themed report
-                          └──────────────┬───────────────┘
-                                         │
-                          ┌──────────────▼───────────────┐
-                          │       bi-dash-creator        │──► multi-page dashboard
-                          └──────────────────────────────┘
+```mermaid
+---
+config:
+  layout: elk
+  look: classic
+---
+flowchart TD
+    User([User NLQ])
+    Orchestrator[nlq-dashboard-orchestrator]
+    Connector[data-source-connector]
+    GateA{{Gate A<br/>data model OK?}}
+    NLQ[NLQ Q&A loop<br/>visuals · filters · time]
+    GateB{{Gate B<br/>ready to scaffold?}}
+
+    subgraph Pipeline[query-to-pbip pipeline]
+        direction LR
+        Semantic[semantic-mapper]
+        Selector[visual-selector]
+        Generator[visual-generator]
+        Packager[project-packager]
+        Semantic --> Selector --> Generator --> Packager
+    end
+
+    Theme[theme-branding]
+    Dash[bi-dash-creator]
+    Output[(.pbip<br/>TMDL · PBIR · theme)]
+
+    User --> Orchestrator --> Connector --> GateA
+    GateA -->|confirmed| NLQ --> GateB
+    GateB -->|yes| Pipeline --> Theme --> Dash --> Output
+
+    classDef gate fill:#fff4ce,stroke:#d4a72c,color:#5c4a06;
+    classDef skill fill:#dbeafe,stroke:#2b6cb0,color:#1e3a5f;
+    classDef output fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    class GateA,GateB gate;
+    class Orchestrator,Connector,NLQ,Semantic,Selector,Generator,Packager,Theme,Dash skill;
+    class Output output;
 ```
 
 ### The two confirmation gates
@@ -193,15 +191,11 @@ If you're already inside a Claude Code session, this is the most idiomatic path 
 
 Claude Code will pull the marketplace manifest from `.claude-plugin/marketplace.json`, install all ten skills, and make them available in every future session.
 
-To update:
-
 ```text
+To update:
 /plugin marketplace update powerbi-dashboard-generator
-```
 
 To uninstall:
-
-```text
 /plugin uninstall powerbi@powerbi-dashboard-generator
 ```
 
